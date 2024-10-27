@@ -93,6 +93,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+    <groupId>org.sonarsource.scanner.maven</groupId>
+    <artifactId>sonar-maven-plugin</artifactId>
+    <version>4.0.0.4141</version> <!-- or the latest version -->
+</plugin>
+
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
