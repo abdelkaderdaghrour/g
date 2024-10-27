@@ -30,7 +30,7 @@ pipeline{
             }
         }
 
-/*
+
 
          stage('Unit Tests') {
             steps{
@@ -40,7 +40,7 @@ pipeline{
 
 
 
-
+/*
                  stage('Code Quality Check via SonarQube') {
                    steps{
 
