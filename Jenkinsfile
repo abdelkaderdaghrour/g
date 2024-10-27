@@ -10,7 +10,7 @@ pipeline{
             steps{
       			checkout([$class: 'GitSCM', branches: [[name: '*/main']],
 			extensions: [],
-			userRemoteConfigs: [[url: 'https://github.com/ahmedebahrouni/test_cicd.git']]])
+			userRemoteConfigs: [[url: 'https://github.com/abdelkaderdaghrour/g.git']]])
             }
         }
 
@@ -44,9 +44,10 @@ pipeline{
                  stage('Code Quality Check via SonarQube') {
                    steps{
 
-       sh " mvn clean verify sonar:sonar -Dsonar.projectKey=powerdevops -Dsonar.projectName='powerdevops' -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.token=sqp_09b8c5e3f3d0ff40ae63a2ab52ac6b90190c5076"
+       sh " mvn clean verify sonar:sonar -Dsonar.projectKey=devops -Dsonar.projectName='devops' -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.token=sqp_713eaa9aaa061933c23aa01153a14472a47337cd"
                    }
-               }
+                 }
+
 
 
                 stage('Publish to Nexus') {
@@ -64,7 +65,7 @@ pipeline{
  stage('Build Docker Image') {
                       steps {
                           script {
-                            sh 'docker build -t ahmed1919/ahmedtest:back .'
+                            sh 'docker build -t g2rdaghrour/devops:back .'
                           }
                       }
                   }
@@ -72,13 +73,13 @@ pipeline{
                   stage('login dockerhub') {
                                         steps {
 
-				sh 'docker login -u ahmed1919 --password dckr_pat_wRsBljrIeVpG1l8CBB5TxXBXKqA'
+				sh 'docker login -u g2rdaghrour --password dckr_pat_4vQWPShBxeWzU-clJXVmnV71h6E'
                                             }
 		  }
 
 	                      stage('Push Docker Image') {
                                         steps {
-                                   sh 'docker push ahmed1919/ahmedtest:back'
+                                   sh 'docker push g2rdaghrour/devops:back'
                                             }
 		  }
 
@@ -87,7 +88,7 @@ pipeline{
 stage('clone frontend'){
          steps{
              script{
-                  checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ahmedebahrouni/front.git']]])
+                  checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/abdelkaderdaghrour/g.git']]])
 
              }
          }
@@ -101,8 +102,8 @@ stage('clone frontend'){
 	    stage('Build Frontend Docker Image') {
                       steps {
                           script {
-                             sh 'docker login -u ahmed1919 --password dckr_pat_wRsBljrIeVpG1l8CBB5TxXBXKqA'
-                            sh 'docker build -t ahmed1919/ahmedtest:front .'
+                             sh 'docker login -u g2rdaghrour --password dckr_pat_4vQWPShBxeWzU-clJXVmnV71h6E'
+                            sh 'docker build -t g2rdaghrour/devops:front .'
                           }
                       }
                   }
@@ -113,9 +114,9 @@ stage('clone frontend'){
             steps {
                 script {
 
-             sh 'docker login -u ahmed1919 --password dckr_pat_wRsBljrIeVpG1l8CBB5TxXBXKqA'
+             sh 'docker login -u g2rdaghrour --password dckr_pat_4vQWPShBxeWzU-clJXVmnV71h6E'
 
-             sh "docker push ahmed1919/ahmedtest:front"
+             sh "docker push g2rdaghrour/devops:front"
 
                 }
             }
@@ -144,26 +145,7 @@ stage('clone frontend'){
 }
 
 
-        post {
-		success{
-		mail bcc: '', body: '''Morning  eya trifi ,
-we are happy to inform you that Ahmed Bahrouni's pipeline build was successful Thanks you for your Time see you 7:30 nchalla.
-ciao !
--Jenkins Team-''', cc: '', from: 'ahmed.bahrouni@esprit.tn', replyTo: '', subject: 'Build Finished - Success', to: 'eya.trifi@esprit.tn'
-		}
-		
-		failure{
-mail bcc: '', body: '''Dear bahrouni ahmed,
-we are sorry to inform you that your pipeline build failed. 
-Keep working ! 
--Jenkins Team-''', cc: '', from: 'ahmed.bahrouni@esprit.tn', replyTo: '', subject: 'Build Finished - Failure', to: 'ahmed.bahrouni@esprit.tn'
-		}
-
-       always {
-		emailext attachLog: true, body: '', subject: 'Build finished',from: 'ahmed.bahrouni@esprit.tn' , to: 'ahmed.bahrouni@esprit.tn'
-            cleanWs()
-       }
-    }
+                        
 
     
 

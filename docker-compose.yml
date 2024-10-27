@@ -6,7 +6,7 @@ services:
     container_name: mysqldb
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: ahmed
+      MYSQL_DATABASE: devopos
     ports:
       - "3306:3306"
     volumes:
@@ -18,7 +18,7 @@ services:
   #backendapp
 
   app_achat_backend:
-    image: ahmed1919/PFE:FIRST
+    image: g2rdaghrour/devops:front
     container_name: back
     ports:
       - "8087:8087"
@@ -26,7 +26,7 @@ services:
       - mysqldb
     environment:
 
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/powerdevopsa?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/devops?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 
       SPRING_DATASOURCE_USERNAME: root
 
