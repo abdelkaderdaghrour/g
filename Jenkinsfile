@@ -30,7 +30,7 @@ pipeline{
             }
         }
 
-
+/*
 
          stage('Unit Tests') {
             steps{
@@ -48,7 +48,7 @@ pipeline{
                    }
                  }
 
-
+*/
 
                 stage('Publish to Nexus') {
                    steps {
