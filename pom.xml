@@ -115,10 +115,11 @@
 	<pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.4.0.905</version>
-			</plugin>
+    <groupId>org.sonarsource.scanner.maven</groupId>
+    <artifactId>sonar-maven-plugin</artifactId>
+    <version>3.3.0.793</version> <!-- Choose a version compatible with Java 11 -->
+</plugin>
+
 		</plugins>
 	</pluginManagement>
 </build>
