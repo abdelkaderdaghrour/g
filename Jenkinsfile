@@ -40,15 +40,16 @@ pipeline{
 
 
 
-/*
+
                  stage('Code Quality Check via SonarQube') {
                    steps{
+                    withSonarQubeEnv('sonarqube')
+                        
+                    {sh 'mvn sonar:sonar'}
 
-       sh " mvn clean verify sonar:sonar -Dsonar.projectKey=devops -Dsonar.projectName='devops' -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.token=sqp_713eaa9aaa061933c23aa01153a14472a47337cd"
                    }
                  }
 
-*/
 
                 stage('Publish to Nexus') {
                    steps {
