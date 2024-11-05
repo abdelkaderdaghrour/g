@@ -40,17 +40,16 @@ pipeline{
 
 
 
-
+/*
                  stage('Code Quality Check via SonarQube') {
                    steps{
-                    /*
                     withSonarQubeEnv('sonarqube')
                         
                     {sh 'mvn sonar:sonar'}
-*/
-                   } 
+
+                   }
                  }
-                
+                 */
 
 
                 stage('Publish to Nexus') {
